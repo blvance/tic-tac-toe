@@ -36,5 +36,6 @@ private:
     Player*     ownerAt(int index ) const;
 
     Square      _grid[3][3];
+    
 };
 

@@ -28,18 +28,23 @@ namespace ClassGame {
         {
                 ImGui::DockSpaceOverViewport();
 
-                //ImGui::ShowDemoWindow();
+                // ImGui::ShowDemoWindow();
 
                 if (!game) return;
                 if (!game->getCurrentPlayer()) return;
                 
                 ImGui::Begin("Settings");
                 ImGui::Text("Current Player Number: %d", game->getCurrentPlayer()->playerNumber());
+                ImGui::Text("Current Turn No: %d", game->getCurrentTurnNo());
                 ImGui::Text("Current Board State: %s", game->stateString().c_str());
 
                 if (gameOver) {
                     ImGui::Text("Game Over!");
-                    ImGui::Text("Winner: %d", gameWinner);
+                    if (gameWinner == -1) {
+                        ImGui::Text("Result: Draw");
+                    } else {
+                        ImGui::Text("Winner: %d", gameWinner);
+                    }
                     if (ImGui::Button("Reset Game")) {
                         game->stopGame();
                         game->setUpBoard();
