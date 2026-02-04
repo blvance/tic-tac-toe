@@ -1,10 +1,6 @@
-## TicTacToe.cpp Readme
-
-This project includes a full Tic‑Tac‑Toe implementation in `classes/TicTacToe.cpp`. That file wires the engine’s grid and pieces to game rules, state serialization, and a simple AI opponent.
-
 ### File Overview
 
-`classes/TicTacToe.cpp` implements the `TicTacToe` class declared in `classes/TicTacToe.h`. It extends the engine’s `Game` base class and fills in the main gameplay hooks:
+classes/TicTacToe.cpp implements the TicTacToe class declared in classes/TicTacToe.h. It extends the engine’s Game base class and fills in the main gameplay hooks:
 
 - `setUpBoard()` creates the 3x3 grid, loads `square.png`, and starts the game.
 - `actionForEmptyHolder()` places a piece for the current player when a square is clicked.
@@ -16,7 +12,7 @@ This project includes a full Tic‑Tac‑Toe implementation in `classes/TicTacTo
 
 ### Board Setup
 
-`setUpBoard()` configures a 3x3 grid and positions each `Square` with an `ImVec2` offset. Each square uses `square.png` from `resources/`. The `Game` base class uses `_gameOptions.rowX` and `_gameOptions.rowY` so the engine knows the grid dimensions.
+`setUpBoard()` configures a 3x3 grid and positions each `Square` with an ImVec2 offset. Each square uses `square.png` from `resources/`. The Game base class uses `_gameOptions.rowX` and `_gameOptions.rowY` so the engine knows the grid dimensions.
 
 ### Piece Placement
 
@@ -42,7 +38,7 @@ The engine calls `endTurn()` after this returns `true`, so `actionForEmptyHolder
 
 Ordering is left‑to‑right, top‑to‑bottom (index 0 is top‑left, index 8 is bottom‑right).
 
-### AI
+### AI (MegaMax)
 
 The AI plays as player 2 (O) and evaluates moves using:
 
@@ -51,23 +47,3 @@ The AI plays as player 2 (O) and evaluates moves using:
 - `aiBoardEval()` to score terminal positions.
 
 The AI prefers faster wins and slower losses by adjusting the score using search depth.
-
-### Assets Used
-
-The Tic‑Tac‑Toe visuals rely on the following textures in `resources/`:
-
-- `x.png`
-- `o.png`
-- `square.png`
-
-### Build and Run
-
-If you want to run the demo:
-
-```sh
-cmake -S . -B build
-cmake --build build
-./build/demo
-```
-
-On macOS/Linux, you will need OpenGL and `glfw` available for the build to succeed.
